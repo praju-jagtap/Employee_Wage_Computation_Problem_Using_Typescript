@@ -1,4 +1,4 @@
-//UC5-Calculate Employee Wage For Month
+//UC6-Calculate Wage till No of working days is reached
 var EmpTimeDetail;
 (function (EmpTimeDetail) {
     EmpTimeDetail[EmpTimeDetail["IS_FULL_TIME"] = 1] = "IS_FULL_TIME";
@@ -7,11 +7,15 @@ var EmpTimeDetail;
     EmpTimeDetail[EmpTimeDetail["FULL_TIME_HOUR"] = 8] = "FULL_TIME_HOUR";
     EmpTimeDetail[EmpTimeDetail["WAGE_PER_HOUR"] = 20] = "WAGE_PER_HOUR";
     EmpTimeDetail[EmpTimeDetail["NUM_OF_WORKING_DAYS"] = 20] = "NUM_OF_WORKING_DAYS";
+    EmpTimeDetail[EmpTimeDetail["MAX_HRS_IN_MONTH"] = 100] = "MAX_HRS_IN_MONTH";
 })(EmpTimeDetail || (EmpTimeDetail = {}));
 var empHrs = 0;
 var totalEmployeeWage = 0;
 var empWage = 0;
-for (var day = 0; day < EmpTimeDetail.NUM_OF_WORKING_DAYS; day++) {
+var totalEmpHour = 0;
+var totalWorkingDays = 0;
+while (totalEmpHour <= EmpTimeDetail.MAX_HRS_IN_MONTH && totalWorkingDays < EmpTimeDetail.NUM_OF_WORKING_DAYS) {
+    totalWorkingDays++;
     var empCheck = Math.floor(Math.random() * 10) % 3;
     switch (empCheck) {
         case EmpTimeDetail.IS_PART_TIME:
@@ -25,6 +29,5 @@ for (var day = 0; day < EmpTimeDetail.NUM_OF_WORKING_DAYS; day++) {
     }
     empWage = empHrs * EmpTimeDetail.WAGE_PER_HOUR;
     totalEmployeeWage += empWage;
-    console.log("Employee Wage is: " + empWage);
 }
-console.log("Total Employee Wage of Month: " + totalEmployeeWage);
+console.log("Total Days : " + totalWorkingDays + "\t\tTotal Employee Wage: " + empWage);
